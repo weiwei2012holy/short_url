@@ -11,7 +11,7 @@
 ### 部署方法
 
 1. Clone 本项目
-2. 修改配置`config.json`
+2. 修改配置`cp config.json.tmp config.json`
 3. 启动服务`go run main/service`
 
 ### 使用方法
@@ -20,6 +20,9 @@
 2. 通过自定义Header传入验证参数（服务端调用，简单验证）
     1. `X-Auth-Key` = Key
     2. `X-Auth-Secret` = Secret 3.调用接口：POST `127.0.0.1:8090/api/url` ,生成短链,访问短链即可跳转
+3. 服务地址
+   1. 测试：https://test-short-url.atido.com
+   2. 线上：
 
 ### 提供的接口
 
