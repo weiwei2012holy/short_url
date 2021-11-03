@@ -2,6 +2,6 @@
   "service_domain": "https://ydj.vip",
   "service_port": "8090",
   "service_env": "local",
-  "mysql_dsn": "root:123456@tcp(127.0.0.1:3306)/mall?charset=utf8mb4&parseTime=True&loc=Local",
+  "mysql_dsn": "root:123456@tcp(127.0.0.1:3306)/short_url?charset=utf8mb4&parseTime=True&loc=Local",
   "redis_addr": "127.0.0.1:6379"
 }
