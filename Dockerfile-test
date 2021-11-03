@@ -19,4 +19,4 @@ WORKDIR /home/wwwroot/
 COPY . .
 
 # 将我们的代码编译成二进制可执行文件app
-RUN go build service.go
+RUN cd main; go build service.go
