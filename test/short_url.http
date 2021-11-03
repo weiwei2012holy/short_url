@@ -1,0 +1,46 @@
+### 创建
+POST {{host}}/api/url
+Accept: application/json
+X-Auth-Key:{{auth_key}}
+X-Auth-Secret:{{auth_secret}}
+Content-Type: application/json
+
+{
+  "url": "https://www.github.com",
+  "expired_at": "2021-12-02"
+}
+
+### 详情
+GET {{host}}/api/url?new_url=127.0.0.1/a
+Accept: application/json
+X-Auth-Key:{{auth_key}}
+X-Auth-Secret:{{auth_secret}}
+Content-Type: application/json
+
+### 修改
+PUT {{host}}/api/url
+Accept: application/json
+X-Auth-Key:{{auth_key}}
+X-Auth-Secret:{{auth_secret}}
+Content-Type: application/json
+
+{
+  "new_url": "127.0.0.1/b",
+  "url": "https://www.google.com",
+  "expired_at": ""
+}
+
+### 删除
+DELETE {{host}}/api/url
+Content-Type: application/json
+X-Auth-Key:{{auth_key}}
+X-Auth-Secret:{{auth_secret}}
+Content-Type: application/json
+
+{
+  "new_url": "127.0.0.1/a"
+}
+
+### 重定向
+GET {{host}}/H
+Accept: application/json
