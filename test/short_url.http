@@ -6,7 +6,7 @@ X-Auth-Secret:{{auth_secret}}
 Content-Type: application/json
 
 {
-  "url": "https://www.github.com",
+  "url": "https://mini.yidejia.com/sms/?code=T62",
   "expired_at": "2021-12-02"
 }
 
@@ -38,7 +38,7 @@ X-Auth-Secret:{{auth_secret}}
 Content-Type: application/json
 
 {
-  "new_url": "127.0.0.1/a"
+  "new_url": "127.0.0.1/20"
 }
 
 ### 重定向

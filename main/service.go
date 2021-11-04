@@ -23,7 +23,7 @@ func main() {
             "message": "welcome",
         })
     })
-    r.GET("/:code", controller.Url.Trans)
+    r.GET("/:code", controller.Url.Trans).Use(middleware.Visit())
 
     rAuth := r.Group("/api/").Use(middleware.Auth())
     {

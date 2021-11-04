@@ -1,15 +1,17 @@
 package middleware
 
 import (
-    "fmt"
+    "encoding/json"
     "github.com/gin-gonic/gin"
     "short_url/lib"
 )
 
 func Visit() gin.HandlerFunc {
     return func(c *gin.Context) {
-        lib.Logger().Debug(c.Request.Header)
-        fmt.Println(c.Request.Header)
+        code := c.Param("code")
+        h := c.Request.Header
+        str, _ := json.Marshal(h)
+        lib.Logger().Infof("code=%suser=%s", code, lib.Md5(string(str)))
         c.Next()
     }
 
