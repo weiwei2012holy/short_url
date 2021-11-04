@@ -46,15 +46,19 @@ func (u shortUrl) Cov(c *gin.Context, req *form.CovReq) (*form.CovResp, error) {
         if err != nil {
             return err
         }
+
+        //写入Redis缓存
+        err = lib.Redis().Set(c, url.Code, url.Url, GetTtl(url.ExpiredAt)).Err()
+        if err != nil {
+            return err
+        }
         return nil
     })
     if err != nil {
         return nil, err
     }
-    resp.Data.Code = url.Code
-    resp.Data.NewUrl = u.GetFullPath(url.Code)
-    //写入Redis缓存
-    lib.Redis().Set(c, url.Code, url.Url, GetTtl(url.ExpiredAt))
+    resp.Code = url.Code
+    resp.NewUrl = u.GetFullPath(url.Code)
     return resp, nil
 }
 
@@ -75,8 +79,7 @@ func (u shortUrl) Rcov(c *gin.Context, req *form.RcovReq) (*form.RcovResp, error
     }
     url := new(model.ShortUrl)
     dao.ShortUrlDao.DB().Where("code = ?", code).First(&url)
-    resp := new(form.RcovResp)
-    data := new(form.RcovData)
+    data := new(form.RcovResp)
     if url.ID > 0 {
         data.Code = url.Code
         data.Url = url.Url
@@ -87,8 +90,7 @@ func (u shortUrl) Rcov(c *gin.Context, req *form.RcovReq) (*form.RcovResp, error
     } else {
         return nil, errors.New("NOT FOUND")
     }
-    resp.Data = data
-    return resp, nil
+    return data, nil
 }
 
 func (u shortUrl) GetFullPath(code string) string {

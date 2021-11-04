@@ -6,11 +6,8 @@ type (
         ExpiredAt string `json:"expired_at" query:"expired_at" form:"expired_at"`
     }
     CovResp struct {
-        BaseResponse
-        Data struct {
-            Code   string `json:"code"`
-            NewUrl string `json:"new_url"`
-        } `json:"data"`
+        Code   string `json:"code"`
+        NewUrl string `json:"new_url"`
     }
 )
 
@@ -18,10 +15,7 @@ type (
     RcovReq struct {
         NewUrl string `json:"new_url" query:"new_url" form:"new_url" binding:"required"`
     }
-    RcovResp struct {
-        BaseResponse
-        Data *RcovData `json:"data"`
-    }
+    RcovResp RcovData
     RcovData struct {
         Code      string `json:"code"`
         Url       string `json:"url"`
