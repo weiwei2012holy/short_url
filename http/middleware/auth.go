@@ -15,6 +15,7 @@ func Auth() gin.HandlerFunc {
         err := repository.AuthRepository.CheckAuth(key, secret)
         if err != nil {
             lib.Failed(c, err.Error(), http.StatusUnauthorized)
+            c.Abort()
         }
         //写入全局变量
         c.Set("auth_key", key)

@@ -17,10 +17,12 @@ func (u *url) Trans(c *gin.Context) {
     code := c.Param("code")
     if code == "" {
         lib.Failed(c, "无效的地址")
+        return
     }
-    res, err := repository.ShortUrl.Trans(c,code)
+    res, err := repository.ShortUrl.Trans(c, code)
     if err != nil {
         lib.Failed(c, err.Error())
+        return
     }
     lib.Success(c, res)
 }
@@ -31,10 +33,12 @@ func (u *url) Cov(c *gin.Context) {
     err := c.ShouldBind(&form)
     if err != nil {
         lib.Failed(c, err.Error())
+        return
     }
-    res, err := repository.ShortUrl.Cov(c,form)
+    res, err := repository.ShortUrl.Cov(c, form)
     if err != nil {
         lib.Failed(c, err.Error())
+        return
     }
     lib.Success(c, res)
 }
@@ -45,12 +49,15 @@ func (u *url) Rcov(c *gin.Context) {
     err := c.ShouldBind(&form)
     if err != nil {
         lib.Failed(c, err.Error())
+        return
     }
-    res, err := repository.ShortUrl.Rcov(c,form)
+    res, err := repository.ShortUrl.Rcov(c, form)
     if err != nil {
         lib.Failed(c, err.Error())
+        return
     }
     lib.Success(c, res)
+    return
 }
 
 func (u *url) DeleteCov(c *gin.Context) {
@@ -58,12 +65,15 @@ func (u *url) DeleteCov(c *gin.Context) {
     err := c.ShouldBind(&form)
     if err != nil {
         lib.Failed(c, err.Error())
+        return
     }
     res, err := repository.ShortUrl.DeleteCov(c, form)
     if err != nil {
         lib.Failed(c, err.Error())
+        return
     }
     lib.Success(c, res)
+    return
 }
 
 func (u *url) UpdateCov(c *gin.Context) {
@@ -71,10 +81,13 @@ func (u *url) UpdateCov(c *gin.Context) {
     err := c.ShouldBind(&form)
     if err != nil {
         lib.Failed(c, err.Error())
+        return
     }
     res, err := repository.ShortUrl.UpdateCov(c, form)
     if err != nil {
         lib.Failed(c, err.Error())
+        return
     }
     lib.Success(c, res)
+    return
 }
