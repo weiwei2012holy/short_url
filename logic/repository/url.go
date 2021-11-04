@@ -149,11 +149,17 @@ func (u shortUrl) UpdateCov(c *gin.Context, req *form.UpdateReq) (*form.UpdateRe
 }
 
 func (u shortUrl) Trans(c *gin.Context, code string) (interface{}, error) {
+
     url := lib.Redis().Get(c, code).Val()
     if url == "" {
         return nil, errors.New("NOT FOUND")
     }
-    c.Redirect(http.StatusPermanentRedirect, url)
+    //h := c.Request.Header
+    //str ,_ := json.Marshal(h)
+    //lib.Logger().Debug(lib.Md5(string(str)))
+    //todo 访问统计
+
+    c.Redirect(http.StatusTemporaryRedirect, url)
     return nil, nil
 }
 

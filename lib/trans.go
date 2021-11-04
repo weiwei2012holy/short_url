@@ -7,7 +7,10 @@ package lib
  */
 
 import (
+    "crypto/md5"
     "errors"
+    "fmt"
+    "io"
     "math"
 )
 
@@ -135,4 +138,11 @@ func IndexMap() [62]string {
         "Z",
     }
     return i
+}
+
+
+func Md5(str string) string {
+    h := md5.New()
+    io.WriteString(h, str)
+    return fmt.Sprintf("%x", h.Sum(nil))
 }
