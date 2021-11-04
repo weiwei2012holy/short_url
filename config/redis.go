@@ -10,17 +10,17 @@ const (
 
 type redisConfig struct {
     Name   string
+    Addr   string
     Config interface{}
 }
 
 var (
-    RedisDefaultAddr = ""
     // RedisDefault 默认配置
     RedisDefault = redisConfig{
         Name: RedisConnNameDefault,
+        Addr: "",
         Config: redis.Options{
-            Addr: RedisDefaultAddr,
-            DB:   0,
+            DB: 0,
         },
     }
 )

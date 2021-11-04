@@ -2,6 +2,7 @@ package lib
 
 import (
     "github.com/go-redis/redis/v8"
+    "log"
     "short_url/config"
 )
 
@@ -28,5 +29,9 @@ func Redis(connName ...string) *redis.Client {
 func InitRedis() {
     RedisClientMap = make(map[string]*redis.Client)
     options := config.RedisDefault.Config.(redis.Options)
+    options.Addr = config.RedisDefault.Addr
+    if options.Addr == "" {
+        log.Fatal("redis 配置不完整")
+    }
     RedisClientMap[config.RedisDefault.Name] = redis.NewClient(&options)
 }

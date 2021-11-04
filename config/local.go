@@ -31,5 +31,5 @@ func InitLocal() {
     if viper.GetString("redis_addr") == "" {
         log.Fatal("config.json中{redis_addr}缺失")
     }
-    RedisDefaultAddr = viper.GetString("redis_addr")
+    RedisDefault.Addr = viper.GetString("redis_addr")
 }
