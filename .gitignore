@@ -1,2 +1,3 @@
 config.json
 http-client.private.env.json
+main/go_build_short_url_main
