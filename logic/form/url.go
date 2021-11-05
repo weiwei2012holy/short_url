@@ -31,6 +31,7 @@ type (
         ExpiredAt string `json:"expired_at" query:"expired_at" form:"expired_at"`
     }
     UpdateResp struct {
+        Success bool `json:"success"`
     }
 )
 
@@ -39,5 +40,6 @@ type (
         NewUrl string `json:"new_url" form:"new_url" query:"new_url" binding:"required"`
     }
     DeleteResp struct {
+        Success bool `json:"success"`
     }
 )

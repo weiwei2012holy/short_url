@@ -11,7 +11,8 @@ func Visit() gin.HandlerFunc {
         code := c.Param("code")
         h := c.Request.Header
         str, _ := json.Marshal(h)
-        lib.Logger().Infof("code=%suser=%s", code, lib.Md5(string(str)))
+        lib.Logger().Infof("code=%s user=%s", code, lib.Md5(string(str)))
+        //lib.Logger().Debug(c.Request.Header)
         c.Next()
     }
 

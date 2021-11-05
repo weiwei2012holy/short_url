@@ -2,7 +2,6 @@ package main
 
 import (
     "github.com/gin-gonic/gin"
-    "net/http"
     "short_url/config"
     "short_url/http/middleware"
     "short_url/lib"
@@ -17,14 +16,6 @@ func main() {
     lib.InitRedis()
 
     r := gin.Default()
-
-    r.GET("/", func(c *gin.Context) {
-        c.JSON(http.StatusOK, gin.H{
-            "message": "welcome",
-        })
-    })
-    r.GET("/:code", controller.Url.Trans).Use(middleware.Visit())
-
     rAuth := r.Group("/api/").Use(middleware.Auth())
     {
         rAuth.POST("url", controller.Url.Cov)
@@ -32,6 +23,8 @@ func main() {
         rAuth.PUT("url", controller.Url.UpdateCov)
         rAuth.DELETE("url", controller.Url.DeleteCov)
     }
+    r.GET("/:code",middleware.Visit(), controller.Url.Trans)
+
     r.Run(":" + config.ServicePort)
 
 }

@@ -121,7 +121,7 @@ func (u shortUrl) DeleteCov(c *gin.Context, req *form.DeleteReq) (*form.DeleteRe
         return nil, errors.New("NOT FOUND")
     }
     err = url.DB().Transaction(func(tx *gorm.DB) error {
-        dao.ShortUrlDao.DB().Delete(&url)
+        tx.Delete(&url)
         err := lib.Redis().Del(c, code).Err()
         if err != nil {
             return err
@@ -132,7 +132,7 @@ func (u shortUrl) DeleteCov(c *gin.Context, req *form.DeleteReq) (*form.DeleteRe
         return nil, err
     }
 
-    return nil, nil
+    return &form.DeleteResp{Success: true}, nil
 }
 
 func (u shortUrl) UpdateCov(c *gin.Context, req *form.UpdateReq) (*form.UpdateResp, error) {
@@ -154,7 +154,7 @@ func (u shortUrl) UpdateCov(c *gin.Context, req *form.UpdateReq) (*form.UpdateRe
         url.ExpiredAt = &et
     }
     err = url.DB().Transaction(func(tx *gorm.DB) error {
-        url.DB().Save(&url)
+        tx.Save(&url)
         err := lib.Redis().Set(c, code, url.Url, GetTtl(url.ExpiredAt)).Err()
         if err != nil {
             return err
@@ -162,10 +162,10 @@ func (u shortUrl) UpdateCov(c *gin.Context, req *form.UpdateReq) (*form.UpdateRe
         return nil
     })
     if err != nil {
-        return nil,err
+        return nil, err
     }
 
-    return nil, nil
+    return &form.UpdateResp{Success: true}, nil
 }
 
 func (u shortUrl) Trans(c *gin.Context, code string) (interface{}, error) {

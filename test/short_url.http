@@ -25,7 +25,7 @@ X-Auth-Secret:{{auth_secret}}
 Content-Type: application/json
 
 {
-  "new_url": "127.0.0.1/b",
+  "new_url": "127.0.0.1/21",
   "url": "https://www.google.com",
   "expired_at": ""
 }
