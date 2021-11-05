@@ -14,9 +14,9 @@ func main() {
     lib.MysqlClient.AutoMigrate(&model.ShortUrl{})
     lib.MysqlClient.AutoMigrate(&model.Auth{})
 
-    testAuth := model.Auth{
-        Key:    "test",
-        Secret: "123456",
-    }
-    model.Auth{}.DB().Where(model.Auth{Key: "test"}).FirstOrCreate(&testAuth)
+    //testAuth := model.Auth{
+    //    Key:    "test",
+    //    Secret: "123456",
+    //}
+    //model.Auth{}.DB().Where(model.Auth{Key: "test"}).FirstOrCreate(&testAuth)
 }
