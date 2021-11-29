@@ -20,11 +20,7 @@
 2. 通过自定义Header传入验证参数（服务端调用，简单验证）
     1. `X-Auth-Key` = Key
     2. `X-Auth-Secret` = Secret 
-    3. 3.调用接口：POST `127.0.0.1:8090/api/url` ,生成短链,访问短链即可跳转
-3. 服务地址
-   1. 测试：https://test-short-url.atido.com
-   2. 线上：
-
+    3. 调用接口：POST `127.0.0.1:8090/api/url` ,生成短链,访问短链即可跳转
 ### 提供的接口
 
 详见：test目录下 `short_url.http`
