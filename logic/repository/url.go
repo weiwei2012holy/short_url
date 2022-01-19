@@ -67,7 +67,7 @@ func GetTtl(endTime *time.Time) time.Duration {
     if endTime != nil {
         ttl = time.Until(*endTime)
     } else {
-        ttl = -1
+        ttl = 0
     }
     return ttl
 }
